@@ -7,4 +7,4 @@ Have cards but don't have chips? This might be a temporary solution. Built with 
 3. Start Betting.
 
 ####Note :
-As this uses a single instance of database and is realtime, only a table can be used at a time. Hence used your own [firebase](https://www.firebase.com/) collection for this.
+As this uses a single instance of database and is realtime, only a table can be used at a time. Hence use your own [firebase](https://www.firebase.com/) collection for this.
