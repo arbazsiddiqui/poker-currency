@@ -46,6 +46,28 @@ function genLinks(key, name) {
     return links;
 }
 
+function bet(key, name) {
+    var user = new Firebase('https://pokercurrency.firebaseio.com/players/' + key);
+    var data={};
+    user.on("value", function(snapshot){
+        data = snapshot.val();
+    });
+    var bet = prompt("How much you want to bet", 50);
+    var newAmount = parseInt(data.amount) - bet;
+    user.update({
+        amount: newAmount
+    });
+    pot.on("value", function(snapshot){
+        data=snapshot.val();
+    });
+    var curPot = data.value;
+    var newPot = parseInt(curPot) + parseInt(bet);
+    pot.update({
+        value : newPot
+    })
+
+}
+
 function reset(){
     players.remove();
     pot.update({
