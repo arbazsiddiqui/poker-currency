@@ -68,6 +68,26 @@ function bet(key, name) {
 
 }
 
+function givePot(key, name){
+    var user = new Firebase('https://pokercurrency.firebaseio.com/players/' + key);
+    var userData={};
+    user.on("value", function(snapshot){
+        userData = snapshot.val();
+    });
+    userAmount = userData.amount;
+    pot.on("value", function(snapshot){
+        potData=snapshot.val();
+    });
+    var curPot = potData.value;
+    newAmount = parseInt(userAmount) + parseInt(curPot);
+    user.update({
+        amount: newAmount
+    });
+    pot.update({
+        value : 0
+    })
+}
+
 function reset(){
     players.remove();
     pot.update({
